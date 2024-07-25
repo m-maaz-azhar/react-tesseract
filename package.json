@@ -1,0 +1,37 @@
+{
+  "name": "react-tesseract",
+  "version": "1.0.0",
+  "description": "A lightweight React hook for seamless integration of Tesseract.js OCR capabilities.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-maaz-azhar/react-tesseract.git"
+  },
+  "keywords": [
+    "react-tesseract",
+    "tesseract-react-ocr",
+    "react-ocr",
+    "react-tesseract-wrapper",
+    "image-to-text",
+    "react-image-to-text"
+  ],
+  "author": "M Maaz Azhar",
+  "license": "(MIT AND BSD-3-Clause)",
+  "bugs": {
+    "url": "https://github.com/m-maaz-azhar/react-tesseract/issues"
+  },
+  "homepage": "https://github.com/m-maaz-azhar/react-tesseract#readme",
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "tesseract.js": "^5.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.9",
+    "@babel/preset-env": "^7.24.8",
+    "@babel/preset-react": "^7.24.7",
+    "babel-loader": "^9.1.3"
+  }
+}
