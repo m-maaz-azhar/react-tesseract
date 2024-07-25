@@ -1,34 +1,36 @@
 import { useState, useCallback } from 'react';
 import { createWorker } from 'tesseract.js';
 
-const useTesseract = () => {
-  const [progress, setProgress] = useState(0);
+export const useTesseract = () => {
   const [error, setError] = useState(null);
   const [result, setResult] = useState('');
   const [isRecognizing, setIsRecognizing] = useState(false);
 
-  const recognize = useCallback(async (image, language = 'eng') => {
-    setProgress(0);
+  const recognize = useCallback(async (image, options = {}) => {
     setError(null);
     setResult('');
     setIsRecognizing(true);
 
-    const worker = await createWorker({
-      logger: m => {
-        if (m.status === 'recognizing text') {
-          setProgress(parseInt(m.progress * 100));
-        }
-      },
-    });
+    const {
+      language = 'eng',
+      errorHandler,
+    } = options;
+
+    const worker = await createWorker();
 
     try {
       await worker.loadLanguage(language);
       await worker.initialize(language);
-      const { data: { text } } = await worker.recognize(image);
-      setResult(text);
-      return text;
+      
+      const { data } = await worker.recognize(image, {
+        ...options,
+      });
+      
+      setResult(data.text);
+      return data;
     } catch (err) {
       setError(err.message);
+      if (errorHandler) errorHandler(err);
       throw err;
     } finally {
       await worker.terminate();
@@ -38,11 +40,8 @@ const useTesseract = () => {
 
   return {
     recognize,
-    progress,
     error,
     result,
     isRecognizing
   };
 };
-
-export default useTesseract;
