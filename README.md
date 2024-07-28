@@ -7,7 +7,6 @@ A lightweight React Library for seamless integration of Tesseract.js OCR capabil
 - 🚀 Easy-to-use React hook
 - 🛠 Built-in error handling
 - 🎛 Flexible configuration options
-- 🌍 Multi-language support
 
 ## Installation
 
