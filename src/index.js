@@ -15,13 +15,11 @@ export const useTesseract = () => {
       language = 'eng',
       errorHandler,
     } = options;
-
-    const worker = await createWorker();
-
+    let worker;
+    
     try {
-      await worker.loadLanguage(language);
-      await worker.initialize(language);
-      
+      worker = await createWorker(language);
+            
       const { data } = await worker.recognize(image, {
         ...options,
       });
