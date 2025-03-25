@@ -10,19 +10,19 @@ export const useTesseract = () => {
     setError(null);
     setResult('');
     setIsRecognizing(true);
-
+  
     const {
       language = 'eng',
       errorHandler,
+      ...tesseractOptions
     } = options;
+  
     let worker;
-    
+  
     try {
       worker = await createWorker(language);
             
-      const { data } = await worker.recognize(image, {
-        ...options,
-      });
+      const { data } = await worker.recognize(image, tesseractOptions);
       
       setResult(data.text);
       return data;
